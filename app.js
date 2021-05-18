@@ -1,39 +1,39 @@
 const http = require('http');
-var jwt = require('jsonwebtoken');
+let jwt = require('jsonwebtoken');
 const fs = require('fs')
-var cert = fs.readFileSync('./id_rsa.ppk');
-var exp = timestamp + (1000 * 3600);
+let cert = fs.readFileSync('./id_rsa.ppk');
+let exp = timestamp + (1000 * 3600);
 const hostname = '127.0.0.1';
 const port = 3000;
 
 function randomString() {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    for(var i = 0; i < 8; i++) {
+    let text = "";
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for(let i = 0; i < 8; i++) {
  
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     
     }
     text += "-";
-    for(var i = 0; i < 4; i++) {
+    for(let i = 0; i < 4; i++) {
  
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     
     }
     text += "-";
-    for(var i = 0; i < 4; i++) {
+    for(let i = 0; i < 4; i++) {
  
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     
     }
     text += "-";
-    for(var i = 0; i < 4; i++) {
+    for(let i = 0; i < 4; i++) {
  
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     
     }
     text += "-";
-    for(var i = 0; i < 12; i++) {
+    for(let i = 0; i < 12; i++) {
  
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     
@@ -41,11 +41,11 @@ function randomString() {
     return text
 }
 function timestamp() { return parseInt(Date.now().toString().substr(0,10)); }
-function timestampexp() {  var time = parseInt(Date.now().toString().substr(0,10)); var result = time + 3600; return result}
+function timestampexp() {  let time = parseInt(Date.now().toString().substr(0,10)); let result = time + 3600; return result}
 
 const server = http.createServer((req, res) => {
 
-  var token = jwt.sign({
+  let token = jwt.sign({
     "aud": "a42056e2-20f5-497d-9d71-922f7267e015",
     "iss": "https://login.microsoftonline.com/a50e7b76-8ea5-492c-bf17-97d652fc3ce9/v2.0",
     "iat": timestamp(),
